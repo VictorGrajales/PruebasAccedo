@@ -1,3 +1,18 @@
+<?php
+
+session_start();
+
+if (isset($_SESSION['ident'])){
+    $user= $_SESSION['ident'];
+}
+else{
+    header("Location:login.php");
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +26,16 @@
 </head>
 <body>
     <?php $data = json_decode( file_get_contents("https://pokeapi.co/api/v2/pokemon/"), true);?>
+    <header>
+
+    <a href="../controllers/cerrarSesion.php" class="btn btn-danger m-2">Cerrar sesión</a>
+    
+    </header>
     <div class="container">
 
         <div class="row">
             <?php for($i = 0; $i < count($data['results']); $i++){?>
-            <a class="col-xl-4 p-4" href="https://pokeapi.co/api/v2/pokemon/bulbasaur">
+            <a class="col-xl-4 p-4" href="detalle_pokemon.php?name_pokemon=<?php print_r($data['results'][$i]['name']); ?>&numero=<?php print_r($i+1) ?>">
                 <div class="shadow p-4 text-center">
                
                     <?php print_r(strtoupper($data['results'][$i]['name'])) ?> 

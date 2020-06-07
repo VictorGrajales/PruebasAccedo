@@ -18,7 +18,7 @@ if ($consulta->num_rows > 0){
   	$_SESSION['ident'] = new User ($consulta[0],$consulta[1],$consulta[2], $consulta[3]);
 
     echo '<script languaje="javascript">
-		window.location.href= "../views/index.php#mostrar"
+		window.location.href= "../views/index.php"
         </script>';
   }
 	else {
@@ -34,7 +34,7 @@ else {
   echo '<script languaje="javascript">
     var mensaje ="Credenciales incorrectas.";
     alert(mensaje);
-    window.location.href= "../../admin/index.php"
+    window.location.href= "../views/login.php"
     </script>';
 
 }
